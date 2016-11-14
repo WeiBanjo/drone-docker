@@ -109,6 +109,18 @@ func main() {
 			EnvVar: "PLUGIN_BUILD_ARGS",
 		},
 		cli.StringFlag{
+			Name:   "pull",
+			Usage:  "build pull",
+			Value:  "true",
+			EnvVar: "PLUGIN_BUILD_PULL",
+		},
+		cli.StringFlag{
+			Name:   "rm",
+			Usage:  "build rm flag",
+			Value:  "true",
+			EnvVar: "PLUGIN_BUILD_REMOVE",
+		},
+		cli.StringFlag{
 			Name:   "repo",
 			Usage:  "docker repository",
 			EnvVar: "PLUGIN_REPO",
@@ -157,6 +169,8 @@ func run(c *cli.Context) error {
 			Tags:       c.StringSlice("tags"),
 			Args:       c.StringSlice("args"),
 			Repo:       c.String("repo"),
+			Pull:       c.StringSlice("pull"),
+			Remove:     c.StringSlice("rm"),
 		},
 		Daemon: Daemon{
 			Registry:      c.String("docker.registry"),
